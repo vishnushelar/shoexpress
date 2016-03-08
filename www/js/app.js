@@ -54,7 +54,7 @@ angular.module('mttapp', [
         }
       });
 
-      Parse.initialize(urls.parse_applicationId, urls.parse_javaScriptKey, urls.parse_masterKey);
+      //Parse.initialize(urls.parse_applicationId, urls.parse_javaScriptKey, urls.parse_masterKey);
 
       // then override any default you want
       window.plugins.nativepagetransitions.globalOptions.duration = 350;
@@ -68,7 +68,7 @@ angular.module('mttapp', [
 
     });
 
-    Parse.initialize(urls.parse_applicationId, urls.parse_javaScriptKey, urls.parse_masterKey);
+    //Parse.initialize(urls.parse_applicationId, urls.parse_javaScriptKey, urls.parse_masterKey);
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams, fromState, fromStateParams) {
       if (toState.name === 'app.home' || toState.name === 'app.admin-home') {
