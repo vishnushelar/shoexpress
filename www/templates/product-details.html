@@ -1,0 +1,115 @@
+<ion-view view-title="{{productDetails.obj_title}}" class="product_details_page">
+
+  <ion-content class="content">
+    <ion-slide-box on-slide-changed="imageDetailsSlideHasChanged($index)" delegate-handle="product_img_slidebox_dh"
+                   show-pager="{{productDetails.product_img_attributes.length > 1}}" class="details_slide_box">
+      <ion-slide class="image_details_slide" ng-repeat="productDetail in productDetails.product_img_attributes"
+                 ng-click="openImageDetailsModal(productDetail.product_pic)">
+        <img ng-src="{{productDetail.product_pic}}" alt="" class="detail_image full-image"/>
+      </ion-slide>
+    </ion-slide-box>
+
+    <div class="list padding-top">
+      <div class="item border_top_none">
+        <div class="product_heading font_aller_Regular font_18px text-center white_space_normal">
+          {{productDetails.obj_title}}
+        </div>
+        <div class="font_aller_Regular font_14px padding-top text-center">
+          <span class="text_strike padding-horizontal">
+            <span>&#8377;</span>&nbsp;
+            <span ng-bind-html="productDetails.obj_orig_price"></span>
+          </span>
+          <span class="padding-horizontal discount_price">
+            <span>&#8377;</span>&nbsp;
+          <span ng-bind-html="productDetails.obj_discounted_price"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="item padding-top color_section padding_lr_zero"
+           ng-repeat="attribute in productDetails.product_attributes">
+        <div ng-if="attribute.label == 'Color'">
+          <div class="text-center uppercase font_aller_bold font_12px">colours</div>
+          <ion-scroll direction="x" style="width: 100%; height: 60px" class="padding-top">
+            <div ng-repeat="color in attribute.values track by $index" style="display: inline-block"
+                 ng-click="colorSelected(color)" ng-class="{'selected_color' : (selectedColor === color)}">
+              <div class="color_circle" ng-style="setStylesForColor(color)">
+                <span ng-if="color == 'transparent'" class="position_absolute">
+                  <img src="img/transparent_color.png" alt="" class="transparent_color_circle_img"/>
+                </span>
+                <span ng-if="selectedColor === color">
+                  <i class="icon ion-android-done color_check_icon"
+                     ng-class="{'transparent_check':(color == 'transparent')}"></i>
+                </span>
+              </div>
+            </div>
+          </ion-scroll>
+        </div>
+        <!--<span ng-click="moveLeftForColors()"><i class="icon ion-chevron-left color_left_arrow"></i></span>-->
+        <!--<span ng-click="moveRightForColors()"><i class="icon ion-chevron-right color_right_arrow"></i></span>-->
+      </div>
+      <div class="item padding-top quantity_section padding_lr_zero">
+        <div class="text-center uppercase font_aller_bold font_12px">quantity</div>
+        <ion-scroll direction="x" style="width: 100%; height: 50px" class="padding-top">
+          <div ng-repeat="quantity in [1,2,3,4,5,6,7,8,9,10]" style="display: inline-block"
+               ng-click="quantitySelected(quantity)">
+            <div class="quantity_circle" ng-bind="quantity"
+                 ng-class="{'selected_quantity':(selectedQuantity === quantity)}"></div>
+          </div>
+        </ion-scroll>
+        <!--<span ng-click="moveLeftForQuantity()"><i class="icon ion-chevron-left quantity_left_arrow"></i></span>-->
+        <!--<span ng-click="moveRightForQuantity()"><i class="icon ion-chevron-right quantity_right_arrow"></i></span>-->
+      </div>
+
+      <div class="item share_section padding_lr_zero">
+        <div class="text-center uppercase font_aller_bold font_12px">share with friends on</div>
+        <ion-scroll direction="x" style="width: 100%; height: 50px" class="padding-top">
+          <div class="social_icons">
+            <div class="social_share_circle" ng-click="shareTheProduct('facebook',productDetails)">
+              <i class="icon ion-social-facebook"></i>
+            </div>
+            <div class="social_share_circle" ng-click="shareTheProduct('twitter',productDetails)">
+              <i class="icon ion-social-twitter"></i>
+            </div>
+            <div class="social_share_circle" ng-click="shareTheProduct('whatsapp',productDetails)">
+              <i class="icon ion-social-whatsapp"></i>
+            </div>
+            <!--<div class="social_share_circle" ng-click="shareTheProduct('instagram',productDetails)">
+              <i class="icon ion-social-instagram"></i>
+            </div>-->
+            <div class="social_share_circle" ng-click="shareTheProduct('chatbubble',productDetails)">
+              <i class="icon ion-ios-chatbubble"></i>
+            </div>
+            <div class="social_share_circle" ng-click="shareTheProduct('email',productDetails)">
+              <i class="icon ion-email"></i>
+            </div>
+          </div>
+        </ion-scroll>
+      </div>
+      <div>
+        <!--<div class="description_heading item" ng-click="toggleDescription()">-->
+        <div class="description_heading item">
+          <div class="uppercase font_aller_bold font_14px text-center">Description</div>
+        </div>
+      </div>
+      <div class="description item white_space_normal font_aller_Regular font_14px color_88"
+           ng-show="showDescription" ng-bind-html="productDetails.obj_desc"></div>
+
+      <div class="item text-center">
+        <div class="chat_with_us_icon_btn" ng-click="shareTheProduct('chatwithus',productDetails)">
+          <i class="icon ion-ios-chatbubble-outline font_28px" style="position: relative;top:4px;"></i>&nbsp;
+          <span class="uppercase font_aller_bold font_14px">chat with us</span>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="text-center details_page_footer">
+    <div class="width_100p">
+      <button class="button button-positive button-block uppercase text-center font_aller_bold margin_zero"
+              ng-click="addToCart()">add to cart
+      </button>
+    </div>
+  </ion-footer-bar>
+</ion-view>

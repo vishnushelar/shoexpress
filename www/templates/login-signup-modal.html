@@ -1,0 +1,140 @@
+<ion-modal-view class="login_signup_modal_view">
+  <ion-content class="login_signup_content">
+
+    <ion-slide-box on-slide-changed="imageDetailsSlideHasChanged($index)" delegate-handle="loginSignUpDelegateHandler"
+                   class="" show-pager="false">
+      <ion-slide class="login_slide">
+        <div class="padding height_inherit padding_top_20px">
+          <div class="text-center padding_top_20px">
+            <div class="font_aller_Regular font_24px">Sign in</div>
+            <button class="button button-clear login_signup_close_btn" ng-click="closeLoginSignUpModal()">
+              <i class="ion-ios-close-empty close_icon"></i>
+            </button>
+          </div>
+          <div class="padding-vertical">
+            <form name="loginForm" class="login_form font_aller_Regular">
+              <div class="list">
+                <label class="item item-input">
+                  <span class="input-label">Email</span>
+                  <input type="email" placeholder="me@example.com" class="font_aller_Regular" ng-model="user.email"
+                         required ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,4}$/">
+                </label>
+                <label class="item item-input">
+                  <span class="input-label">Password</span>
+                  <input type="password" placeholder="min 6 characters" class="font_aller_Regular"
+                         ng-model="user.password" required minlength="6">
+                </label>
+
+                <div class="padding-horizontal text_right">
+                  <button type="button" class="button button-clear font_14px button-dark font_aller_Regular"
+                          ng-click="goToForgotPasswordSlide()">Forgot Password?
+                  </button>
+                </div>
+              </div>
+
+              <div class="text-center padding_top_20px">
+                <button type="submit" class="button button-outline font_aller_bold uppercase signin_btn"
+                        ng-disabled="loginForm.$invalid" ng-click="signInUser(user)">Sign in
+                </button>
+                <div class="padding-vertical font_aller_Regular">OR</div>
+                <button class="button button-outline font_aller_Regular signin_fb_btn"
+                        ng-click="signInWithFacebook()">Sign in with Facebook
+                </button>
+
+                <div class="padding_top_30px">
+                  <div class="text-center padding-vertical font_aller_Regular">Don't have an account yet?</div>
+                  <button class="button button-outline font_aller_bold signup_btn uppercase"
+                          ng-click="goToSignUpSlide()">Sign up now
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </ion-slide>
+
+      <ion-slide class="signup_slide">
+        <div class="padding height_inherit padding_top_20px">
+          <div class="text-center padding_top_20px">
+            <button class="button button-clear login_signup_back_btn" ng-click="goToSignInSlide()">
+              <i class="ion-ios-arrow-left back_icon"></i>
+            </button>
+            <div class="font_aller_Regular font_24px">Sign Up</div>
+            <button class="button button-clear login_signup_close_btn" ng-click="closeLoginSignUpModal()">
+              <i class="ion-ios-close-empty close_icon"></i>
+            </button>
+          </div>
+          <div class="padding-vertical">
+            <form name="signupForm" class="login_form font_aller_Regular">
+              <div class="list">
+                <label class="item item-input">
+                  <span class="input-label">Name</span>
+                  <input type="text" placeholder="John Doe" class="font_aller_Regular" ng-model="newUser.name" required>
+                </label>
+                <label class="item item-input">
+                  <span class="input-label">Email</span>
+                  <input type="email" placeholder="me@example.com" class="font_aller_Regular" ng-model="newUser.email"
+                         required ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,4}$/">
+                </label>
+                <label class="item item-input">
+                  <span class="input-label">Password</span>
+                  <input type="password" placeholder="min 6 characters" class="font_aller_Regular"
+                         ng-model="newUser.password" required minlength="6">
+                </label>
+              </div>
+            </form>
+
+            <div class="text-center padding_top_20px">
+              <button class="button button-outline font_aller_bold uppercase signin_btn"
+                      ng-disabled="signupForm.$invalid" ng-click="createNewUser(newUser)">Sign up
+              </button>
+              <div class="padding-vertical font_aller_Regular">OR</div>
+              <button class="button button-outline font_aller_Regular signin_fb_btn">Sign up with Facebook</button>
+
+              <div class="padding_top_30px">
+                <div class="text-center padding-vertical font_aller_Regular">
+                  By clicking <span class="font_bold font_14px">Sign up</span> you are agreeing to the
+                  <span class="color_positive"> Terms of use</span> and <span
+                  class="color_positive">Privacy policy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+
+      <ion-slide class="forgot_pwd_slide">
+        <div class="padding height_inherit padding_top_20px">
+          <div class="text-center padding_top_20px">
+            <button class="button button-clear login_signup_back_btn" ng-click="goToSignInSlide()">
+              <i class="ion-ios-arrow-left back_icon"></i>
+            </button>
+            <div class="font_aller_Regular font_24px">Forgot Password</div>
+            <button class="button button-clear login_signup_close_btn" ng-click="closeLoginSignUpModal()">
+              <i class="ion-ios-close-empty close_icon"></i>
+            </button>
+          </div>
+          <div class="padding-vertical">
+            <form name="forgotPwdForm" class="login_form font_aller_Regular">
+              <div class="list">
+                <label class="item item-input">
+                  <span class="input-label">Email</span>
+                  <input type="email" placeholder="me@example.com" class="font_aller_Regular" ng-model="newUser.email"
+                         required ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,4}$/">
+                </label>
+              </div>
+            </form>
+
+            <div class="text-center padding_top_20px">
+              <button class="button button-outline font_aller_bold uppercase signin_btn"
+                      ng-disabled="forgotPwdForm.$invalid" ng-click="sendEmailForPasswordReset(newUser)">SEND
+              </button>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+
+
+  </ion-content>
+</ion-modal-view>

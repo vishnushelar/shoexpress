@@ -1,0 +1,179 @@
+<ion-view view-title="Add Item" class="add_item_view">
+  <ion-nav-buttons side="left">
+    <button class="button button-clear font_aller_Regular font_bold" ng-click="goToHome()">
+      Cancel
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear font_aller_Regular font_bold">Save</button>
+  </ion-nav-buttons>
+
+  <ion-content class="add_item_content">
+    <div>
+      <div class="list">
+        <div class="item item-input">
+          <input type="text" placeholder="Item Name" class="font_aller_bold"/>
+        </div>
+        <div class="item item-input">
+          <textarea placeholder="Item Description" class="font_aller_Regular item_description"
+                    ng-keyup="autoExpand($event)"></textarea>
+        </div>
+        <div class="item cam_icons">
+          <ion-scroll direction="x" style="width: 100%;" class=""
+                      delegate-handle="images_scroll_delegate" horizontal-scroll-fix="mainScroll">
+            <span class="cam_icon" ng-repeat="image in itemImages track by $index"
+                  ng-click="showAddNewPhotoActionSheet()">
+              <span class="ion-ios-camera"></span>
+            </span>
+            <span class="add_icon" ng-click="addAnotherCameraIcon()">
+              <span class="ion-plus"></span>
+            </span>
+          </ion-scroll>
+        </div>
+
+        <div class="item color_section">
+          <div class="uppercase">colours</div>
+        </div>
+        <div class="item color_icons">
+          <ion-scroll direction="x" style="width: 100%;" class=""
+                      delegate-handle="colors_scroll_delegate" horizontal-scroll-fix="mainScroll">
+            <span class="color_item" ng-repeat="color in itemColors track by $index">
+              <span class="">{{color.name}}</span>
+            </span>
+            <span class="add_icon" ng-click="showAddNewColorActionSheet()">
+              <span class="ion-plus"></span>
+            </span>
+          </ion-scroll>
+        </div>
+
+        <div class="item size_section">
+          <div class="uppercase">sizes</div>
+        </div>
+        <div class="item size_icons">
+          <ion-scroll direction="x" style="width: 100%;" class=""
+                      delegate-handle="sizes_scroll_delegate" horizontal-scroll-fix="mainScroll">
+            <span class="size_enter" ng-repeat="size in itemSizes track by $index" ng-click="enterSize($index)">
+              {{size.name}}
+            </span>
+            <span class="add_icon" ng-click="addAnotherSizeItem()">
+              <span class="ion-plus"></span>
+            </span>
+          </ion-scroll>
+        </div>
+
+        <div class="item quantity_section">
+          <div class="row padding_zero">
+            <div class="col-50 uppercase quantity">quantity</div>
+            <div class="col-50 text_right">
+              <div class="row padding_zero">
+                <div class="col-33 text-center" ng-click="changeQuantity(-1)">
+                  <i class="ion-minus dec_icon"></i>
+                </div>
+                <div class="col-34 font_bold padding_top_2px font_20px text-center" ng-bind="selectedQuantity"></div>
+                <div class="col-33 text-center" ng-click="changeQuantity(1)">
+                  <i class="ion-plus inc_icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item price_section uppercase">
+          price
+        </div>
+        <div class="item">
+          <label class="item item-input item-select padding_zero border_none">
+            <div class="input-label padding_zero font_aller_Regular">
+              Currency
+            </div>
+            <select class="currency_select">
+              <option>INR</option>
+              <option>USD</option>
+            </select>
+          </label>
+        </div>
+        <div class="item padding_zero">
+          <div class="row padding_zero">
+            <div class="col-50 item item-input border_none">
+              <input type="tel" placeholder="Enter current price" ng-model="itemPrice.current"
+                     class="font_aller_Regular padding_right_zero" ng-blur="calculateDiscountPercentage()"/>
+            </div>
+            <div class="col-50 item item-input border_left_only">
+              <input type="tel" placeholder="Enter discount price" ng-model="itemPrice.discount"
+                     class="font_aller_Regular padding_right_zero" ng-blur="calculateDiscountPercentage()"/>
+            </div>
+          </div>
+        </div>
+        <div class="item item-input">
+          <input type="tel" placeholder="Enter discount percentage" ng-model="itemPrice.discountPercentage"
+                 class="font_aller_Regular padding_right_zero"/>
+        </div>
+
+        <div class="item shipping_section uppercase">
+          shipping
+        </div>
+        <div class="item padding_zero shipping_item">
+          <div class="item item-checkbox border_none">
+            <label class="checkbox">
+              <input type="checkbox">
+            </label>
+            Cash on delivery
+          </div>
+        </div>
+        <div class="item padding_zero shipping_item">
+          <div class="item item-checkbox border_left_only">
+            <label class="checkbox">
+              <input type="checkbox">
+            </label>
+            In-store pick-up
+          </div>
+        </div>
+        <div class="item padding_zero shipping_item">
+          <div class="item item-checkbox border_none">
+            <label class="checkbox">
+              <input type="checkbox">
+            </label>
+            Free shipping
+          </div>
+        </div>
+        <div class="item padding_zero shipping_item">
+          <div class="row padding_zero">
+            <div class="col-66">
+              <div class="item item-checkbox border_left_only">
+                <label class="checkbox">
+                  <input type="checkbox">
+                </label>
+                Home delivery
+              </div>
+            </div>
+            <div class="col-34 padding">
+              <span class="home_delivery_currency">&#8377;</span>
+              <input type="tel" class="home_delivery_amount" ng-model="homeDeliveryCharge"/></input>
+            </div>
+          </div>
+        </div>
+
+        <div class="customer_action_section uppercase">
+          <div class="item">
+            <label class="item item-input item-select padding_zero border_none">
+              <div class="input-label padding_zero font_aller_Regular customer_action_text">
+                customer action
+              </div>
+              <select class="customer_actions_select">
+                <option>Buy</option>
+                <option>Schedule</option>
+                <option>Book</option>
+                <option>Contact</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="item delete_item">
+          <button class="button button-assertive font_aller_bold delete_product">Delete Item</button>
+        </div>
+
+      </div>
+    </div>
+  </ion-content>
+
+</ion-view>

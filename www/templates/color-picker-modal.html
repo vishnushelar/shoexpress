@@ -1,0 +1,11 @@
+<ion-modal-view class="color_picker_modal_view">
+  <ion-header-bar class="row color_picker_modal_header">
+    <div class="col-90 heading">Color Picker</div>
+    <div class="col-10" ng-click="closeColorPickerModal()">
+      <i class="ion-ios-close-empty close_icon"></i>
+    </div>
+  </ion-header-bar>
+  <ion-content class="color_picker_modal_content" scroll="false">
+    <input colorpicker type="text" ng-model="your_model"  style="width: 100px; height: 40px;"/>
+  </ion-content>
+</ion-modal-view>

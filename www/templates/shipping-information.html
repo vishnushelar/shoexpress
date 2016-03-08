@@ -1,0 +1,81 @@
+<ion-view view-title="Shipping Information" class="shipping_info_view">
+
+  <ion-content class="shipping_info_content">
+    <div class="list">
+      <div class="item text-center">
+        <button class="button button-positive button-outline button-small button-block other_shipping"
+                ui-sref="app.select-shipping-address">Select other shipping address
+        </button>
+      </div>
+      <div class="shipping_info_form">
+        <label class="item item-input padding_bottom_5px">
+          <input type="text" placeholder="First Name" ng-model="shippingAddress.first_name" required>
+        </label>
+        <label class="item item-input padding_bottom_5px">
+          <input type="text" placeholder="Last Name" ng-model="shippingAddress.last_name" required>
+        </label>
+        <label class="item item-input padding_bottom_5px">
+          <input type="tel" placeholder="Phone Number" ng-model="shippingAddress.phone_no" required>
+        </label>
+        <label class="item item-input padding_bottom_5px">
+          <input type="text" placeholder="Address" ng-model="shippingAddress.address" required>
+        </label>
+        <label class="item item-input padding_bottom_5px">
+          <input type="tel" placeholder="Pin Code" ng-model="shippingAddress.zip" required>
+        </label>
+        <label class="item item-input padding_bottom_5px">
+          <input type="text" placeholder="City" ng-model="shippingAddress.city" required>
+        </label>
+        <label class="item item-input padding_bottom_5px">
+          <input type="text" placeholder="Country" ng-model="shippingAddress.country" required>
+        </label>
+      </div>
+
+      <div class="item border_top_none">
+        <p class="uppercase font_aller_bold font_14px padding_tb_5px">Delivery type</p>
+      </div>
+      <div class="item delivery_type">
+        <ion-scroll direction="x" style="width: 100%; height: 65px" class="">
+          <div class="type_column" ng-click="deliveryTypeSelected(1,0,'Free')">
+            <div class="box text-center" ng-class="{'box_active':(deliveryMethod === 1)}">
+              <div class="uppercase">Free</div>
+              <div>&#8377; 0</div>
+            </div>
+          </div>
+          <div class="type_column" ng-click="deliveryTypeSelected(2,75, '2-4 business days')">
+            <div class="box text-center" ng-class="{'box_active':(deliveryMethod === 2)}">
+              <div class="uppercase">2-4 business days</div>
+              <div>&#8377; 75</div>
+            </div>
+          </div>
+          <div class="type_column" ng-click="deliveryTypeSelected(3,45,'4-7 business days')">
+            <div class="box text-center" ng-class="{'box_active':(deliveryMethod === 3)}">
+              <div class="uppercase">4-7 business days</div>
+              <div>&#8377; 45</div>
+            </div>
+          </div>
+        </ion-scroll>
+      </div>
+      <div class="item font_aller_bold">
+        <div class="row padding_tb_5px padding_lr_zero">
+          <div class="col-80 uppercase font_14px">Delivery</div>
+          <div class="col-20 text-right">&#8377; {{deliveryCharge}}</div>
+        </div>
+      </div>
+      <div class="item font_aller_bold">
+        <div class="row padding_tb_5px padding_lr_zero">
+          <div class="col-75 uppercase font_14px">Total price</div>
+          <div class="col-25 text-right">&#8377; {{totalCartDiscountPrice + deliveryCharge}}</div>
+        </div>
+      </div>
+
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="text-center shipping_info_page_footer">
+    <button class="button button-positive button-block text-center margin_zero"
+            ng-click="goToConfirmationPage()">Review Order
+    </button>
+  </ion-footer-bar>
+
+</ion-view>

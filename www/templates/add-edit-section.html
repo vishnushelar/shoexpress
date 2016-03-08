@@ -1,0 +1,50 @@
+<ion-view view-title="{{addEditSectionTitle}}" class="addEditSectionView">
+
+  <ion-nav-buttons side="left">
+    <button class="button button-clear font_aller_Regular font_bold" ng-click="goToHome()">
+      Cancel
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear font_aller_Regular font_bold">Save</button>
+  </ion-nav-buttons>
+
+  <ion-content class="addEditSectionContent">
+    <div class="list">
+      <div class="item item-input">
+        <input type="text" placeholder="Section Name" class="font_aller_Regular" ng-model="section.name"/>
+        <span ng-if="section.name" on-touch="section.name = '' ">
+          <i class="icon ion-ios-close placeholder-icon"></i>
+        </span>
+      </div>
+      <div class="item choose_section_layout_text">
+        Choose section layout
+      </div>
+      <div class="item item-icon-right">
+        <label><input type="radio"  ng-model="section.layout" ng-value="1" >
+          <span class="radio_btn_text">Products only</span>
+        </label>
+        <i class="icon ion-ios-help-outline font_24px"></i>
+      </div>
+      <div class="item item-icon-right">
+        <label><input type="radio"  ng-model="section.layout" ng-value="2" >
+          <span class="radio_btn_text">Products with categories</span>
+        </label>
+        <i class="icon ion-ios-help-outline font_24px"></i>
+      </div>
+      <div class="item item-icon-right">
+        <label><input type="radio"  ng-model="section.layout" ng-value="3" >
+          <span class="radio_btn_text">Sub-sections</span>
+        </label>
+        <i class="icon ion-ios-help-outline font_24px"></i>
+      </div>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="footer" ng-if="operationType === 'Edit' ">
+    <div class="button-bar">
+      <button class="button button-assertive button-block margin_zero font_aller_bold font_16px">Delete Section</button>
+    </div>
+  </ion-footer-bar>
+
+</ion-view>

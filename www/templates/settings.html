@@ -1,0 +1,108 @@
+<ion-view view-title="Settings">
+  <ion-nav-buttons side="left">
+    <button class="button button-clear font_aller_Regular" ng-click="goToHome()">Close</button>
+  </ion-nav-buttons>
+
+  <ion-content class="settings_content" style="bottom:10px;">
+    <div class="row login_section" ng-if="!userSignedIn">
+      <div class="col-75 font_aller_Regular padding_top_5px">Hi, you have not yet signed in.</div>
+      <div class="col-25">
+        <button class="button button-positive button-small signin_btn" ng-click="openLoginModal()">Sign In</button>
+      </div>
+    </div>
+    <div class="row login_section" ng-if="userSignedIn">
+      <div class="col-75 font_aller_Regular padding_top_5px">Hi, {{userObj.user_name}}</div>
+      <div class="col-25">
+        <button class="button button-positive button-small signin_btn" ng-click="signOut()">Sign Out</button>
+      </div>
+    </div>
+    <div class="list margin_zero">
+      <!--<ion-toggle ng-model="editApp" toggle-class="toggle-positive"
+                  class="padding font_aller_Regular push_toggle"
+                  ng-change="editAppChanged(editApp)">Edit your app
+      </ion-toggle>
+      <div class="item item-icon-right right_icon padding">
+        <span class="font_aller_Regular">Tutorial to edit the app</span>
+        <i class="icon ion-chevron-right right_icon"></i>
+      </div>-->
+      <div>
+        <div class="item item-icon-right padding" ng-click="goToOrders()" ng-if="userSignedIn">
+          <span class="font_aller_Regular">Orders</span>
+          <i class="icon ion-chevron-right right_icon"></i>
+        </div>
+        <div class="item item-icon-right padding" ng-click="goToReturns()">
+          <span class="font_aller_Regular">Returns</span>
+          <i class="icon ion-chevron-right right_icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="uppercase contact_us">contact us</div>
+    <div class="social_icons">
+      <div class="social_share_circle">
+        <a href="tel:+919920969124"><i class="icon ion-ios-telephone color_00"></i></a>
+        <span>Call</span>
+      </div>
+      <div class="social_share_circle" ng-click="shareTheProduct('email')">
+        <i class="icon ion-email"></i>
+        <span>Email</span>
+      </div>
+      <div class="social_share_circle" ng-click="shareTheProduct('chatbubble')">
+        <i class="icon ion-ios-chatbubble"></i>
+        <span>Chat</span>
+      </div>
+    </div>
+    <div class="uppercase settings" ng-if="userSignedIn">settings and preferences</div>
+    <div class="list margin_zero">
+      <div class="item item-icon-right padding" ng-click="goToShippingPayment()" ng-if="userSignedIn">
+        <span class="font_aller_Regular">Shipping</span>
+        <i class="icon ion-chevron-right right_icon"></i>
+      </div>
+    </div>
+
+    <!--
+    <div class="list margin_zero">
+      <div class="item item-icon-right padding" ng-click="goToShippingPayment()" ng-if="userSignedIn">
+        <span class="font_aller_Regular">Shipping</span>
+        <i class="icon ion-chevron-right right_icon"></i>
+      </div>
+      &lt;!&ndash;<div class="item item-icon-right padding" ng-click="goToNotifications()">
+        <span class="font_aller_Regular">Notifications</span>
+        <i class="icon ion-chevron-right right_icon"></i>
+      </div>&ndash;&gt;
+      <ion-toggle ng-model="airplaneMode" toggle-class="toggle-positive"
+                  class="padding font_aller_Regular push_toggle">Send push notifications
+      </ion-toggle>
+    </div>-->
+    <div class="uppercase spread_word">spread the word</div>
+    <div class="list margin_zero">
+      <div class="item padding">
+        <span class="font_aller_Regular">Rate our App</span>
+      </div>
+    </div>
+
+    <div class="uppercase legal">Legal</div>
+    <div class="list">
+      <div class="item item-icon-right padding" ng-click="goToPrivacyPolicy()">
+        <span class="font_aller_Regular">Privacy Policy</span>
+        <i class="icon ion-chevron-right right_icon"></i>
+      </div>
+      <div class="item item-icon-right padding" ng-click="goToTerms()">
+        <span class="font_aller_Regular">Terms</span>
+        <i class="icon ion-chevron-right right_icon"></i>
+      </div>
+      <div class="item item-icon-right padding" ng-click="goToCancellation()">
+        <span class="font_aller_Regular">Cancellation</span>
+        <i class="icon ion-chevron-right right_icon"></i>
+      </div>
+      <div class="item item-icon-right padding height_60px" ng-if="false">
+        <button class="button button-positive button-block font_aller_Regular">Publish</button>
+      </div>
+      <div class="item padding_zero font_aller_Regular text-center border_bottom_none font_12px color_88">
+        <div class="padding_top_5px">You are using MTT for {{device}}</div>
+        <div class="">Version {{appVersion}}</div>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-view>

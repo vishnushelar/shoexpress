@@ -1,0 +1,33 @@
+<ion-view view-title="Order Details">
+
+  <ion-content class="orders_detail_content">
+
+    <div class="font_aller_Regular">
+      <div class="list">
+        <div class="item" ng-click="viewOrderDetails()">
+          <div class="padding_zero">
+            <h4 class="font_aller_bold font_14px">Order # {{slectedOrder.order_id}}<!-- - Shipped--></h4>
+
+            <p class="font_12px">Order date : {{slectedOrder.createdAt | date:'MMM-dd, yyyy'}}</p>
+
+            <p class="font_12px">Order total : &#8377; {{slectedOrder.total_amount}}</p>
+          </div>
+
+          <div class="row address_track_section">
+            <div class="col-66 address_section">
+              <p>{{shippingAddress.first_name}} {{shippingAddress.last_name}}</p>
+
+              <p>{{shippingAddress.address_first_line}}</p>
+
+              <p>{{shippingAddress.city}} {{shippingAddress.zip}}</p>
+            </div>
+            <div class="col-33 track_delivery_btn">
+              <!--<button class="button button-positive button-small track_delivery_btn font_12px">Track Delivery</button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

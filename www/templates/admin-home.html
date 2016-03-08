@@ -1,0 +1,111 @@
+<ion-view view-title="MTT TELECOM" class="home_page">
+
+  <ion-content scroll="false" class="content" style="bottom:0px;">
+    <tab-slide-box tab="0">
+      <div class="tsb-icons">
+        <div class="tsb-ic-wrp">
+          <a class="{{tab.icon}} uppercase font_12px" ng-repeat="tab in tabs"
+             on-finish-render="test()">{{tab.text}}
+          </a>
+          <a class="uppercase" ng-click="changeState('app.add-section')">Add New</a>
+        </div>
+        <div ng-if="adminLoggedIn" ng-click="changeState('app.edit-section',false)">
+          <img src="img/edit_icon.png" alt="" class="admin_edit_icon"/>
+        </div>
+      </div>
+      <div class="bar-subheader sub_header_bar border_bottom_aa">
+        <div class="row padding_zero">
+          <div class="col padding_zero"
+               ng-class="{'col-10' : showCancel,'col-20 text_right' : !showCancel}">
+            <!--<i class="icon ion-ios-search-strong font_20px color_positive"></i>-->
+            <i class="icon ion-ios-search-strong font_20px color_positive search_icon"></i>
+          </div>
+          <div class="col padding_zero" ng-class="{'col-66': showCancel}">
+            <input type="search" placeholder="Search {{activeTabObj.text}}" class="border_none width_100p"
+                   ng-focus="showCancelBtn()" ng-class="{'text-center':(!showCancel)}"
+                   ng-model="searchString" ng-blur="hideCancelBtn();searchString=''">
+          </div>
+          <div class="col padding text_right  padding_bottom_zero" ng-show="showCancel"
+               ng-class="{'col-20 ': showCancel}">
+            <div class="font_14px" ng-click="hideCancelBtn()">Cancel</div>
+          </div>
+        </div>
+      </div>
+
+      <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index);homePageSlideHasChanged($index);"
+                     class="homepage_slidebox" delegate-handle="homePageDelegate">
+        <ion-slide class="smart_phones_slide">
+          <ion-scroll style="height:100%">
+            <div class="list">
+              <div class="item padding_zero margin_tb_2px" ng-repeat="sections in homePageData.smartPhones">
+                <div><img ng-src="{{sections.img}}" alt="" class="images"/></div>
+                <div ng-if="adminLoggedIn">
+                  <img src="img/edit_icon.png" alt="" class="admin_item_edit_icon"
+                       ng-click="changeState('app.edit-category', false)"/>
+                </div>
+                <div class="overlay">
+                  <div class="description">
+                    <div class="title font_aller_bold" ng-bind="sections.title"></div>
+                    <div class="items font_aller_Regular" ng-bind="sections.items"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="item padding_zero margin_tb_2px add_new_category"
+                   ng-click="changeState('app.add-category', false)"/>
+              <div class="icon_div"><i class="icon ion-image color_55"></i></div>
+              <div class="text-center">Add Category</div>
+            </div>
+            </div>
+          </ion-scroll>
+        </ion-slide>
+        <ion-slide class="power_banks_slide">
+          <ion-scroll style="height:100%">
+            <div class="list">
+              <div class="item padding_zero border_none"
+                   ng-repeat="sections in homePageData.powerBanks track by $index">
+                <div class="row" ng-if="$even">
+                  <div class="col-50 padding position_relative">
+                    <div><img ng-src="{{homePageData.powerBanks[$index].img}}" alt="" class="power_banks_img"/></div>
+                    <div ng-if="adminLoggedIn">
+                      <img src="img/edit_icon.png" alt="" class="admin_item_edit_icon"
+                           ng-click="changeState('app.add-item', false)"/>
+                    </div>
+                    <div>
+                      <div class="font_aller_bold font_14px white_space_normal"
+                           ng-bind="homePageData.powerBanks[$index].title"></div>
+                      <div class="row font_aller_Regular font_12px padding_zero">
+                        <div class="col-50 old_price" ng-bind-html="homePageData.powerBanks[$index].old_price"></div>
+                        <div class="col-50" ng-bind-html="homePageData.powerBanks[$index].new_price"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-50 padding position_relative" ng-if="homePageData.powerBanks[$index+1]">
+                    <div><img ng-src="{{homePageData.powerBanks[$index+1].img}}" alt="" class="power_banks_img"/></div>
+                    <div ng-if="adminLoggedIn">
+                      <img src="img/edit_icon.png" alt="" class="admin_item_edit_icon"
+                           ng-click="changeState('app.add-item', false)"/>
+                    </div>
+                    <div>
+                      <div class="font_aller_bold font_14px white_space_normal"
+                           ng-bind="homePageData.powerBanks[$index+1].title"></div>
+                      <div class="row font_aller_Regular font_12px padding_zero">
+                        <div class="col-50 old_price" ng-bind-html="homePageData.powerBanks[$index+1].old_price"></div>
+                        <div class="col-50" ng-bind-html="homePageData.powerBanks[$index+1].new_price"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-50 padding add_new_item" ng-click="changeState('app.add-item', false)"/>
+                  <div class="icon_div"><i class="icon ion-image"></i></div>
+                  <div class="text-center">Add Item</div>
+                </div>
+              </div>
+            </div>
+          </ion-scroll>
+        </ion-slide>
+      </ion-slide-box>
+    </tab-slide-box>
+  </ion-content>
+</ion-view>

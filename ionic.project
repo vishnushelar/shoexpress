@@ -1,0 +1,12 @@
+{
+  "name": "mtt-app",
+  "app_id": "d6876626",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}

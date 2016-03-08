@@ -1,0 +1,52 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content drag-content="false">
+    <ion-nav-bar class="bar-dark">
+      <ion-nav-back-button class="hide_animate" go-native direction="right">
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-ios-gear-outline hide_animate" ng-click="openSettings()"
+                ng-show="showSettingsButton">
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="goToCartPage()">
+          <i class="icon ion-ios-cart-outline cart_icon"></i>
+          <span class="notification_counter" ng-class="{'display_none':(cartItemNumber == 0)}">
+            <span class="count font_aller_light">{{cartItemNumber}}</span>
+          </span>
+        </button>
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <!--<ion-side-menu side="left">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">MENU</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close href="#/app/home">
+          Home
+        </ion-item>
+        <ion-item menu-close href="#/app/settings">
+          Settings
+        </ion-item>
+        <ion-item menu-close href="#/app/returns">
+          Returns
+        </ion-item>
+        <ion-item menu-close href="#/app/shipping-payment">
+          Shipping & Payment
+        </ion-item>
+        <ion-item menu-close ng-click="openSignUpModal()">
+          Sign Up
+        </ion-item>
+        <ion-item menu-close ng-click="openLoginModal()">
+          Log In
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>-->
+</ion-side-menus>

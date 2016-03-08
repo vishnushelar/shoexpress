@@ -1,0 +1,42 @@
+<ion-modal-view class="refine_modal_view">
+  <ion-header-bar class="refine_modal_header bar-dark">
+    <button class="button button-clear" ng-click="hideRefineModal(false)">Cancel</button>
+    <h1 class="title">Refine</h1>
+    <button class="button button-clear" ng-click="hideRefineModal(true)">Apply</button>
+  </ion-header-bar>
+  <ion-content class="refine_content">
+    <div class="refine_price">
+      <h5 class="heading">By Price</h5>
+
+      <div class="row padding-top">
+        <div class="price_ranges">
+          <div class="price_range" ng-class="{'price_active':(selectedPrice == 'low')}"
+               ng-click="refinePriceSelected('low')">Low
+          </div>
+          <!--<div class="price_range" ng-class="{'price_active':(selectedPrice == 'moderate')}" ng-click="refinePriceSelected('moderate')">Moderate</div>-->
+          <div class="price_range" ng-class="{'price_active':(selectedPrice == 'high')}"
+               ng-click="refinePriceSelected('high')">High
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="refine_color">
+      <h5 class="heading">By Colour</h5>
+
+      <div class="row text-center display_block padding-top">
+        <div ng-repeat="color in allColors track by $index" style="display: inline-block"
+             ng-click="refineColorSelected(color)" ng-class="{'selected_color' : (selectedColors.indexOf(color) >= 0)}"
+             class="padding_top_20px">
+          <div class="">
+            <div class="color_circle" ng-style="setStylesForColor(color)">
+                <span ng-if="color == 'transparent'" class="position_absolute">
+                  <img src="img/transparent_color.png" alt="" class="transparent_color_circle_img"/>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

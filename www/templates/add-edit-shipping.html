@@ -1,0 +1,51 @@
+<ion-view view-title="Shipping Details" class="add_edit_shipping_view">
+
+  <ion-nav-buttons side="right">
+    <button class="button button-clear font_aller_Regular font_bold" ng-click="addNewAddress()"
+            ng-if="!editAddress">Save
+    </button>
+    <button class="button button-clear font_aller_Regular font_bold" ng-click="updateAddress()"
+            ng-if="editAddress">Save
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content class="shipping_content">
+
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="First Name" required ng-model="address.first_name">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Last Name" required ng-model="address.last_name">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Address first line" required ng-model="address.address_first_line">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Address second line" required ng-model="address.address_second_line">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Town / City" required ng-model="address.city">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Country" required ng-model="address.country">
+      </label>
+      <label class="item item-input">
+        <input type="tel" placeholder="Pin Code" required ng-model="address.zip">
+      </label>
+      <label class="item item-input">
+        <input type="tel" placeholder="Phone" required ng-model="address.phone_no">
+      </label>
+
+      <ion-toggle ng-model="address.is_default" toggle-class="toggle-positive"
+                  class="padding font_aller_Regular font_14px push_toggle padding_15px">Default Address
+      </ion-toggle>
+
+    </div>
+
+  </ion-content>
+
+  <div class="bar bar-footer" ng-if="editAddress">
+    <button class="button button-assertive button-block margin_zero" ng-click="removeAddress()">Remove Address</button>
+  </div>
+</ion-view>

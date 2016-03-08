@@ -1,0 +1,133 @@
+<ion-view view-title="{{appHeading}}" class="home_page">
+
+  <ion-content scroll="false" class="content">
+    <tab-slide-box tab="0">
+      <!--<ion-scroll direction="x" class="tabs_scroll_section">-->
+      <div class="tsb-icons">
+        <div class="tsb-ic-wrp">
+          <ion-scroll direction="x" class="tsb-hscroll" delegate-handle="tabsMenu">
+            <a class="uppercase" ng-repeat="section in wholeData.pages[0].sections"
+               on-finish-render="test()">{{section.section_name}}
+            </a>
+          </ion-scroll>
+        </div>
+      </div>
+      <!--</ion-scroll>-->
+
+      <ion-slide-box show-pager="false"
+                     on-slide-changed="slideHasChanged($index);homePageSlideHasChanged($index);(showCancel = false);(searchProduct.obj_title = '')"
+                     class="homepage_slidebox" delegate-handle="homePageDelegate">
+        <ion-slide class="smart_phones_slide" ng-repeat="section in wholeData.pages[0].sections">
+          <ion-scroll class="height_94p">
+            <div class="sub_header_bar">
+              <div class="row padding_zero">
+                <div class="bar item-input">
+                  <label class="item-input-wrapper bg_ff padding_zero"
+                         ng-class="{'input_clicked': (showCancel),'input_not_clicked': (!showCancel)}">
+                    <input type="search" placeholder="Search {{activeTabObj}}" ng-focus="showCancel = true"
+                           class="search_input" ng-model="searchProduct.obj_title" id="searchBox"
+                           ng-class="{'text-center' : (!showCancel)}">
+                    <a class="clearTextIcon" ng-if="showCancel && searchProduct.obj_title.length > 0"
+                       on-touch="searchProduct.obj_title = ''">
+                      <i class="icon ion-ios-close placeholder-icon"></i>
+                    </a>
+                  </label>
+                  <span class="show_cancel_bind visibility_hidden">{{showCancel}}</span>
+                  <button class="button button-clear button-positive font_14px cancel_btn"
+                          id="cancelBtn{{$index}}"
+                          ng-click="searchProduct.obj_title = '';showCancel = false;"
+                          ng-show="showCancel"><span class="cancel_border"></span>Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="list">
+              <div class="item padding_zero border_none" style="margin: -2px;">
+                <div class="item padding_zero margin_tb_2px">
+                  <div ng-if="section.show_sub_section == 1">
+                    <div
+                      ng-repeat="innerSection in filteredSections = (section.sub_section_data | filter: searchProduct)"
+                      ng-click="goToProductsListPage(innerSection,'app.products-list')">
+                      <div><img ng-src="{{innerSection.obj_img_url}}" alt="" class="images"/></div>
+                      <div class="overlay">
+                        <div class="description">
+                          <div class="title font_aller_bold" ng-bind="innerSection.obj_title"></div>
+                          <div class="items font_aller_Regular" ng-if="innerSection.items"
+                               ng-bind="innerSection.items"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-center padding_top_100px" ng-if="filteredSections.length == 0">
+                      <div class="white_space_normal padding font_14px">Sorry we don't have the item that we are looking
+                        for.
+                      </div>
+                      <button class="button button-positive button-small font_12px font_aller_Regular"
+                              ng-click="continueShoppingSearch($index)">Continue Shopping
+                      </button>
+                    </div>
+                  </div>
+                  <div ng-if="section.show_sub_section == 0">
+                    <div
+                      ng-repeat="innerSection in filteredSections2 = (section.section_data | filter: searchProduct)">
+                      <div class="row" ng-if="$even">
+                        <div class="col-50 padding"
+                             ng-click="showProductDetails(filteredSections2[$index],'app.product-details')">
+                          <img ng-src="{{filteredSections2[$index].obj_img_url}}" alt=""
+                               class="power_banks_img full-image"/>
+
+                          <div>
+                            <div class="font_aller_bold font_14px white_space_normal"
+                                 ng-bind="filteredSections2[$index].obj_title"></div>
+                            <div class="row font_aller_Regular font_12px padding_zero">
+                              <div class="col-33 old_price">
+                                <span>&#8377;</span>
+                                <span ng-bind-html="filteredSections2[$index].obj_orig_price"></span>
+                              </div>
+                              <div class="col-33 discount_price">
+                                <span>&#8377;</span>
+                                <span ng-bind-html="filteredSections2[$index].obj_discounted_price"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-50 padding" ng-if="filteredSections2[$index+1]"
+                             ng-click="showProductDetails(filteredSections2[$index+1],'app.product-details')">
+                          <img ng-src="{{filteredSections2[$index+1].obj_img_url}}" alt=""
+                               class="power_banks_img full-image"/>
+
+                          <div>
+                            <div class="font_aller_bold font_14px white_space_normal"
+                                 ng-bind="filteredSections2[$index+1].obj_title"></div>
+                            <div class="row font_aller_Regular font_12px padding_zero">
+                              <div class="col-33 old_price">
+                                <span>&#8377;</span>
+                                <span ng-bind-html="filteredSections2[$index+1].obj_orig_price"></span>
+                              </div>
+                              <div class="col-33 discount_price">
+                                <span>&#8377;</span>
+                                <span ng-bind-html="filteredSections2[$index+1].obj_discounted_price"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-center padding_top_100px" ng-if="filteredSections2.length == 0">
+                      <div class="white_space_normal padding font_14px">
+                        Sorry we don't have the item that you are looking for.
+                      </div>
+                      <button class="button button-positive button-small font_12px font_aller_Regular"
+                              ng-click="continueShoppingSearch($index)">Continue Shopping
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ion-scroll>
+        </ion-slide>
+      </ion-slide-box>
+    </tab-slide-box>
+  </ion-content>
+</ion-view>

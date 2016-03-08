@@ -1,0 +1,15 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.2.4"
+  },
+  "dependencies": {
+    "angular-resource": "~1.4.5",
+    "ngCordova": "~0.1.20-alpha",
+    "satellizer": "~0.13.3",
+    "font-awesome": "fontawesome#~4.5.0",
+    "angular-animate": "~1.5.0",
+    "lodash": "^4.5.0"
+  }
+}

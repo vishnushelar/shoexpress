@@ -1,0 +1,43 @@
+<ion-view view-title="Orders">
+
+  <ion-content class="orders_content">
+
+    <div class="padding text-center font_aller_Regular" ng-show="allOrders.length == 0">
+      <div class="padding">You don't have any orders.</div>
+      <button class="button button-positive button-small start_shopping_btn"
+              ng-click="startShopping()">Start Shopping
+      </button>
+    </div>
+
+    <div class="font_aller_Regular" ng-show="allOrders.length > 0">
+      <div class="list">
+        <div class="item" ng-repeat="order in allOrders | orderBy:'-createdAt'" ng-click="viewOrderDetails(order)">
+          <div class="row padding_zero">
+            <div class="col-90">
+              <h4 class="font_aller_bold font_14px">Order # {{order.order_id}}</h4>
+
+              <p class="font_12px">Order date : {{order.createdAt | date:'MMM-dd, yyyy'}}</p>
+
+              <p class="font_12px">Order total : &#8377; {{order.total_amount}}</p>
+            </div>
+            <div class="col-10">
+              <i class="icon ion-chevron-right font_16px right_icon"></i>
+            </div>
+          </div>
+
+          <div class="line_half"></div>
+
+          <div class="list" ng-repeat="product in order.details">
+            <div class="item item-thumbnail-left border_none">
+              <img ng-src="{{product.product_image}}" alt=""/>
+              <h4 class="white_space_normal">{{product.product_title}}</h4>
+
+              <p class="font_12px">Quantity : {{product.quantity}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

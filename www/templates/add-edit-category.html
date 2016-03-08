@@ -1,0 +1,46 @@
+<ion-view view-title="{{addEditCategoryTitle}}" class="addEditCategoryView">
+
+  <ion-nav-buttons side="left">
+    <button class="button button-clear font_aller_Regular font_bold" ng-click="goToHome()">
+      Cancel
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear font_aller_Regular font_bold">Save</button>
+  </ion-nav-buttons>
+
+  <ion-content class="addEditCategoryContent">
+    <div class="text-center imageUploadSection" ng-if="operationType === 'Add' " ng-click="uploadImage()">
+      <i class="ion-image uploadPicIcon"></i>
+      <div class="color_55">Click here to upload picture</div>
+    </div>
+    <div class="text-center imageDisplaySection" ng-if="operationType === 'Edit' ">
+      <img src="../img/galaxy_s6_edge.png" alt="" class="full-image"/>
+      <div class="optionsSection">
+        <span class="ion-edit edit_icon"></span>
+        <!--<span class="ion-android-close delete_icon"></span>-->
+      </div>
+    </div>
+
+    <div class="list">
+      <div class="item item-input">
+        <input type="text" placeholder="Category Name" class="font_aller_Regular" ng-model="category.name"/>
+        <span ng-if="category.name" on-touch="category.name = '' ">
+          <i class="icon ion-ios-close placeholder-icon"></i>
+        </span>
+      </div>
+      <div class="item item-input">
+        <input type="tel" placeholder="Enter no.of items in this category" class="font_aller_Regular" ng-model="category.number"/>
+        <span ng-if="category.number" on-touch="category.number = '' ">
+          <i class="icon ion-ios-close placeholder-icon"></i>
+        </span>
+      </div>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="footer" ng-if="operationType === 'Edit' ">
+    <div class="button-bar">
+      <button class="button button-assertive button-block margin_zero font_aller_bold font_16px">Delete Category</button>
+    </div>
+  </ion-footer-bar>
+</ion-view>

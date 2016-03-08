@@ -1,0 +1,40 @@
+<ion-view view-title="Shipping Address" class="shipping_address_view">
+
+  <ion-nav-buttons side="right">
+    <button class="button button-clear font_aller_Regular font_bold"
+            ng-click="changeState('app.add-shipping')">Add
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content class="shipping_address_content">
+
+    <div class="list" ng-show="allAddresses.length > 0">
+      <div class="item item-icon-right font_aller_Regular" ng-repeat="address in allAddresses track by $index"
+           ng-click="addressSelected(address)">
+        <div class="white_space_normal font_14px">
+          <span ng-bind="address.first_name"></span>
+          <span ng-bind="address.last_name"></span>
+        </div>
+        <div class="white_space_normal font_12px">
+          <span ng-bind="address.address_first_line"></span>,
+          <span ng-bind="address.address_second_line"></span>
+        </div>
+        <div class="white_space_normal font_12px">
+          <span ng-bind="address.city"></span>,
+          <span ng-bind="address.zip"></span>,
+          <span ng-bind="address.country"></span>
+        </div>
+        <div class="white_space_normal font_12px">
+          <span ng-bind="address.phone_no"></span>
+        </div>
+        <div class="default_text" ng-if="address.is_default">Default</div>
+        <i class="icon ion-chevron-right"></i>
+      </div>
+    </div>
+    <div class="no_address_section text-center" ng-show="allAddresses.length == 0">
+      <div class="text">You haven't added any addresses yet.</div>
+      <button class="button button-positive" ng-click="changeState('app.add-shipping')">Add address</button>
+    </div>
+
+  </ion-content>
+</ion-view>

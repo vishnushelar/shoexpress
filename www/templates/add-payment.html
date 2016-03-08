@@ -1,0 +1,58 @@
+<ion-view view-title="Payment Details">
+
+  <ion-nav-buttons side="right">
+    <button class="button button-clear font_aller_Regular font_bold">Save</button>
+  </ion-nav-buttons>
+
+  <ion-content class="payment_content">
+
+    <div class="list margin_zero bg_fa">
+      <div class="card">
+        <div class="item border_bottom_none card_img">
+          <img src="img/master_card.png" alt=""/>
+        </div>
+        <div class="item item-input border_top_none">
+          <span class="input-label uppercase font_12px width_50p">card number</span>
+          <input type="text"/>
+        </div>
+        <div class="item item-input">
+          <span class="input-label uppercase font_12px width_50p">expiration date</span>
+          <input type="text"/>
+        </div>
+        <div class="item item-input">
+          <span class="input-label uppercase font_12px width_50p">cardholder name</span>
+          <input type="text"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="uppercase item font_12px font_bold stable-bg">billing address</div>
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Address first line">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Address second line">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Town / City">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Pin Code">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Country">
+      </label>
+      <div class="item item-toggle font_14px">
+        Default Payment
+        <label class="toggle toggle-positive">
+          <input type="checkbox">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

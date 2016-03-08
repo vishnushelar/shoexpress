@@ -1,0 +1,28 @@
+
+1. cordova build --release android
+2. cd platforms/android/build/outputs/apk
+3. keytool -genkey -v -keystore mtt-key.keystore -alias mtt -keyalg RSA -keysize 2048 -validity 10000
+4. jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mtt-key.keystore android-release-unsigned.apk mtt
+5. /Users/dhaval/Library/Android/sdk/build-tools/23.0.1/zipalign -v 4 android-release-unsigned.apk mtt.apk
+
+
+keytool -genkey -v -keystore mtt.keystore -alias mtt -keyalg RSA -keysize 2048 -validity 10000
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mtt.keystore android-release-unsigned.apk mtt
+
+
+ /Users/dhaval/Library/Android/sdk/build-tools/23.0.1/zipalign -v 4 android-release-unsigned.apk inspiresMe.apk
+
+
+6packAbs
+Amrita Ramchandran
+YellowApps
+YellowApps
+Mumbai
+MH
+IN
+yes
+
+enter <-
+
+Yellow Apps Rock

@@ -1,0 +1,55 @@
+<ion-view view-title="Edit Cart" class="edit_cart_view">
+
+  <ion-nav-buttons side="left">
+    <button class="button button-clear font_aller_Regular" ng-click="goToCartPage()">Cancel</button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear font_aller_Regular" ng-click="goToCartPage()">Done</button>
+  </ion-nav-buttons>
+
+  <ion-content class="edit_cart_content">
+
+    <ion-list show-delete="data.showDelete">
+
+      <ion-item ng-repeat="product in allCartProducts" class="item" ng-if="!product.is_deleted_from_cart">
+        <div class="row padding_zero">
+          <div class="col col-20 padding_zero">
+            <img ng-src="{{product.product_image}}" alt="" class="cart_list_img"/>
+          </div>
+          <div class="col col-66">
+            <h4 class="font_aller_Regular font_14px white_space_normal">{{product.product_title}}</h4>
+
+            <div class="row padding_zero">
+              <div class="col-75">
+                <p class="font_aller_Regular font_12px">
+                  COLOR : <span class="color_display"
+                                style="background-color : {{product.selected_attributes[0].Color}}"></span>
+                </p>
+              </div>
+              <div class="col-25">
+                <span class="font_12px color_88">
+                  <span ng-bind="product.quantity"></span> x
+                </span>
+                <span class="font_12px">
+                  &#8377; <span ng-if="product.discounted_price" ng-bind="product.discounted_price"></span>
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <div class="col col-20 text-center padding_zero">
+            <div class="" ng-click="increaseDecreaseQuantity(product, 1)"><i class="icon ion-plus color_88"></i></div>
+            <div class="padding font_aller_Regular"><span ng-bind="product.quantity"></span></div>
+            <div class="" ng-click="increaseDecreaseQuantity(product, -1)"><i class="icon ion-minus color_88"></i></div>
+          </div>
+        </div>
+        <ion-option-button class="button-assertive" ng-click="deleteCartItem(product)">
+          <i class="ion-android-close edit_icon_right"></i>
+        </ion-option-button>
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

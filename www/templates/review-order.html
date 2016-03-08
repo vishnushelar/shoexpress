@@ -1,0 +1,100 @@
+<ion-view view-title="Review Order" class="confirmation_view">
+
+  <ion-content class="confirmation_content">
+
+    <div class="list">
+      <!--<div class="item padding_tb_15px">
+        <div class="row padding_zero">
+          <div class="col-80 uppercase font_aller_bold">shipping address</div>
+          <div class="col-20 text-right edit_btn">Edit</div>
+        </div>
+      </div>
+      <div class="item white_space_normal">
+        <div class="address">
+          <span>{{shippingAddress.first_name}} {{shippingAddress.last_name}},</span>
+          <span>{{shippingAddress.address}}, {{shippingAddress.zip}}, {{shippingAddress.city}}, {{shippingAddress.phone_no}}</span>
+        </div>
+      </div>-->
+      <div class="item padding_tb_15px">
+        <div class="row padding_zero">
+          <div class="col-80 uppercase font_aller_bold font_14px">your order</div>
+          <div class="col-20 text-right edit_btn" ng-click="changeState('app.edit-cart')">Edit</div>
+        </div>
+      </div>
+      <div class="padding" ng-repeat="product in allCartProducts" ng-if="!product.is_deleted_from_cart">
+        <div class="row padding_zero">
+          <div class="col-25">
+            <img ng-src="{{product.product_image}}" alt="" class="cart_list_img"/>
+          </div>
+          <div class="col-50 padding-horizontal">
+            <h4 class="font_aller_Regular font_14px white_space_normal">{{product.product_title}}</h4>
+
+            <p class="font_aller_Regular font_12px">
+              COLOR : <span class="color_display"
+                            style="background-color : {{product.selected_attributes[0].Color}}"></span>
+            </p>
+          </div>
+          <div class="col-25 font_aller_Regular">
+            <span class="font_12px color_88"><span ng-bind="product.quantity"></span> x</span>
+            <span><span>&#8377;</span>
+              <span ng-if="product.discounted_price" ng-bind="product.discounted_price"></span>
+              <span ng-if="!product.discounted_price" ng-bind="product.original_price"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="item uppercase font_aller_bold font_14px border_bottom_none">
+        Payment Visa
+      </div>
+      <div class="item item-icon-right border_top_none">
+        <div>**** **** **** 1212</div>
+        <i class="icon ion-chevron-right font_14px"></i>
+      </div>-->
+
+      <div class="item uppercase font_aller_bold font_14px border_bottom_none">
+        Address
+      </div>
+      <div class="item item-icon-right border_top_none padding_right_50px padding_top_zero">
+        <div class="white_space_normal font_14px">
+          <div>{{shippingAddress.first_name}} {{shippingAddress.last_name}}</div>
+          <div>{{shippingAddress.address}}</div>
+          <div>{{shippingAddress.city}}, {{shippingAddress.zip}}</div>
+          <div>{{shippingAddress.phone_no}}</div>
+        </div>
+        <!--<i class="icon ion-chevron-right font_14px"></i>-->
+      </div>
+
+      <div class="item uppercase font_aller_bold font_14px border_bottom_none">
+        Summary
+      </div>
+      <div class="item font_aller_Regular font_14px border_top_none padding_top_zero">
+        <div class="row">
+          <div class="col-50 uppercase">subtotal</div>
+          <div class="col-50 text_right"><span>&#8377;</span> {{totalCartDiscountPrice}}</div>
+        </div>
+        <!--<div class="row">
+          <div class="col-50 uppercase">tax</div>
+          <div class="col-50 text_right"><span>&#8377;</span> {{0}}</div>
+        </div>-->
+        <div class="row">
+          <div class="col-50 uppercase">delivery</div>
+          <div class="col-50 text_right"><span>&#8377;</span> {{deliveryTypeCharge.charge}}</div>
+        </div>
+        <div class="line border_top_ddd"></div>
+        <div class="row">
+          <div class="col-50 uppercase">total</div>
+          <div class="col-50 text_right"><span>&#8377;</span> {{totalCartDiscountPrice + deliveryTypeCharge.charge}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="text-center confirmation_page_footer">
+    <button class="button button-positive button-block text-center margin_zero"
+            ng-click="goToPaymentPage()">Proceed to Payment
+    </button>
+  </ion-footer-bar>
+
+</ion-view>
