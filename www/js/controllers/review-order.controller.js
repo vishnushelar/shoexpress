@@ -106,7 +106,7 @@
     function openPaymentWindow(orderId) {
       CartService.setOrderId(orderId);
       if (CommonService.isMobile()) {
-        var url = 'https://www.right-click.in/yellowapps_payment_gateway/payment_gateway_init.php?app_id=145034519587836600&order_id=' + orderId + '&user_id=' + CommonService.getUserObjInLocalStorage().user_id + '&mode=test&v=' + CommonService.generateUID();
+        var url = 'https://www.right-click.in/yellowapps_payment_gateway/payment_gateway_init.php?app_id=' + urls.appId + '&order_id=' + orderId + '&user_id=' + CommonService.getUserObjInLocalStorage().user_id + '&mode=test&v=' + CommonService.generateUID();
 
         var options = {
           location: 'yes',
